@@ -17,16 +17,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="image-container">
-                                        <img id="importedImage" src="#" alt="Imported Image" class="img-fluid" style="display: none;">
+                                        <img id="importedImage" src="{% if original_image %}{{ url_for('uploaded_file', filename=original_image) }}{% else %}#{% endif %}" alt="Imported Image" class="img-fluid" style="{% if not original_image %}display: none;{% endif %}">
                                     </div>
                                     <button type="button" id="importImageButton" class="btn btn-dark btn-block mt-3">Importar Imagem</button>
                                     <input type="file" id="imageInput" name="file" style="display: none;">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="image-container">
-                                        <img id="countedImage" src="{% if processed_image %}{{ url_for('output_file', filename=processed_image) }}{% else %}#{% endif %}" alt="Counted Image" class="img-fluid" style="{% if not processed_image %}display: none;{% endif %}">
+                                        <img id="countedImage" src="{% if processed_image and processed_folder %}{{ url_for('output_file', folder=processed_folder, filename=processed_image) }}{% else %}#{% endif %}" alt="Counted Image" class="img-fluid" style="{% if not processed_image %}display: none;{% endif %}">
                                     </div>
-                                    <button type="button" id="countImagesButton" class="btn btn-light btn-block mt-3">Total de Árvores: 20</button>
+                                    <button type="button" id="countImagesButton" class="btn btn-light btn-block mt-3">Total de Árvores: {% if num_arvores %}{{ num_arvores }}{% else %}0{% endif %}</button>
                                 </div>
                             </div>
                         </form>
