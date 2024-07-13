@@ -1,0 +1,21 @@
+body {
+    background-color: #d3d3d3;
+}
+
+.image-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 500px;
+    width: 100%;  /* Certifique-se de que o contêiner ocupa a largura total disponível */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    overflow: hidden; /* Para garantir que as partes da imagem que ultrapassam o contêiner sejam ocultadas */
+}
+
+.image-container img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain; /* Garantir que a imagem se ajuste dentro do contêiner sem distorção */
+}

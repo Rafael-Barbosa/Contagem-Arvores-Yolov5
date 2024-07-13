@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Imagens</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="image-container">
+                                        <img id="importedImage" src="#" alt="Imported Image" class="img-fluid" style="display: none;">
+                                    </div>
+                                    <button type="button" id="importImageButton" class="btn btn-dark btn-block mt-3">Importar Imagem</button>
+                                    <input type="file" id="imageInput" name="file" style="display: none;">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="image-container">
+                                        <img id="countedImage" src="{% if processed_image %}{{ url_for('output_file', filename=processed_image) }}{% else %}#{% endif %}" alt="Counted Image" class="img-fluid" style="{% if not processed_image %}display: none;{% endif %}">
+                                    </div>
+                                    <button type="button" id="countImagesButton" class="btn btn-light btn-block mt-3">Total de Árvores: 20</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row mt-4">
+                            <div class="col-md-3">
+                                <button class="btn btn-danger btn-block">Cancelar</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" id="saveButton" class="btn btn-success btn-block">Processar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
